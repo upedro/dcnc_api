@@ -4,6 +4,9 @@
   "description": "Mongoose Node.js Express TypeScript application boilerplate with best practices for API development.",
   "author": "Paul Cham",
   "license": "MIT",
+  "engines": {
+    "node":"17"
+  },
   "scripts": {
     "tsc": "tsc",
     "watch-tsc": "tsc -w",
