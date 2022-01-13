@@ -1,0 +1,5 @@
+{
+  "mongoURI": "mongodb+srv://autodev:autodev2022@cluster0.68nvz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority/",
+  "jwtSecret": "jwtSecretToken",
+  "jwtExpiration": 360000
+}
