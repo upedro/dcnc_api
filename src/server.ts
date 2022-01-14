@@ -1,5 +1,6 @@
 import bodyParser from "body-parser";
 import express from "express"
+var cors = require('cors')
 
 import connectDB from "../config/database";
 
@@ -9,6 +10,12 @@ import profile from "./routes/api/profile";
 import laudo_benner from "./routes/api/laudo_benner";
 
 const app = express();
+app.use(cors()) 
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions))
 
 // Connect to MongoDB
 connectDB();
