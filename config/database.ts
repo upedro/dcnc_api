@@ -9,7 +9,6 @@ const connectDB = async () => {
       useCreateIndex: true,
       useFindAndModify: false,
       useUnifiedTopology: true,
-      dbName: 'dcnc'
     };
     await connect(mongoURI, options);
     console.log("MongoDB Connected...");

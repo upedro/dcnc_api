@@ -2,8 +2,11 @@ import bodyParser from "body-parser";
 import express from "express"
 
 import connectDB from "../config/database";
-import laudos_benner from "./routes/api/laudos_benner";
 
+import auth from "./routes/api/auth";
+import user from "./routes/api/user";
+import profile from "./routes/api/profile";
+import laudo_benner from "./routes/api/laudo_benner";
 
 const app = express();
 
@@ -11,7 +14,7 @@ const app = express();
 connectDB();
 
 // Express configuration
-app.set("port", process.env.PORT || 8080);
+app.set("port", process.env.PORT || 5000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -22,7 +25,16 @@ app.get("/", (_req, res) => {
   res.send("API Running");
 });
 
-app.use("/api/laudos_benner", laudos_benner);
+app.use("/api/laudo_benner", laudo_benner);
+app.use("/api/auth", auth);
+app.use("/api/user", user);
+app.use("/api/profile", profile);
+
+
+// busca index - com varios parametros
+//com erros
+// concluidos
+//por robo
 
 
 
