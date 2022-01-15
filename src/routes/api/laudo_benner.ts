@@ -52,6 +52,69 @@ router.get("/", async function (req: Request, res: Response) {
     .json({laudos,total});
 });
 
+router.get("/metrics", async function (req: Request, res: Response) {
+  const { limit , offset, sort, order, dossie, robo_id, laudo_id, upload_concluido, erro_cadastro } = req.query
+
+  let criteria = {
+    upload_concluido: false
+  }
+  let findQuery = LaudoBenner.find(criteria)
+  let countQuery = LaudoBenner.countDocuments(criteria)
+  let totalUploadFalse = await countQuery.exec()
+
+  
+  criteria = {
+    upload_concluido: true
+  }
+   findQuery = LaudoBenner.find(criteria)
+   countQuery = LaudoBenner.countDocuments(criteria)
+   let totalUploadTrue = await countQuery.exec()
+
+  let criteria2 = {
+    erro_cadastro: true
+  }
+   findQuery = LaudoBenner.find(criteria2)
+   countQuery = LaudoBenner.countDocuments(criteria2)
+   let erroUploadTrue = await countQuery.exec()
+
+   criteria2 = {
+    erro_cadastro: false
+  }
+   findQuery = LaudoBenner.find(criteria2)
+   countQuery = LaudoBenner.countDocuments(criteria2)
+   let erroUploadFalse = await countQuery.exec()
+
+  let criteria3 = {
+    concluido: true
+  }
+   findQuery = LaudoBenner.find(criteria3)
+   countQuery = LaudoBenner.countDocuments(criteria3)
+   let baixadoBennerSucesso = await countQuery.exec()
+
+   let criteria4 = {
+    concluido: false
+  }
+   findQuery = LaudoBenner.find(criteria4)
+   countQuery = LaudoBenner.countDocuments(criteria4)
+   let baixadoBennerFail = await countQuery.exec()
+
+   let criteria5 = {
+    
+  }
+   findQuery = LaudoBenner.find(criteria5)
+   countQuery = LaudoBenner.countDocuments(criteria5)
+   let totalGeral = await countQuery.exec()
+
+
+
+  return res
+    .status(HttpStatusCodes.OK)
+    .json({
+       totalUploadFalse, totalUploadTrue, erroUploadTrue,
+       erroUploadFalse, baixadoBennerSucesso, baixadoBennerFail,totalGeral 
+      });
+});
+
 
 
 export default router;
