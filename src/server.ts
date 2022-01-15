@@ -12,7 +12,7 @@ import laudo_benner from "./routes/api/laudo_benner";
 const app = express();
 app.use(cors()) 
 var corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000','https://dcnc-dashboard.netlify.app'],
   optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions))
