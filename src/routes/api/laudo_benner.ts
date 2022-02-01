@@ -105,13 +105,28 @@ router.get("/metrics", async function (req: Request, res: Response) {
    countQuery = LaudoBenner.countDocuments(criteria5)
    let totalGeral = await countQuery.exec()
 
-
+   let criteria6 = {
+    
+  }
+   const agg = LaudoBenner.aggregate([
+      {
+        $group:{
+          _id:null,
+          horasTrabalho: {$sum: "$tempo_trabalho"}
+        }
+      }
+   ])
+   
+   
+   let horasTrabalho = await agg.exec()
+   horasTrabalho = horasTrabalho[0].horasTrabalho
 
   return res
     .status(HttpStatusCodes.OK)
     .json({
        totalUploadFalse, totalUploadTrue, erroUploadTrue,
-       erroUploadFalse, baixadoBennerSucesso, baixadoBennerFail,totalGeral 
+       erroUploadFalse, baixadoBennerSucesso, baixadoBennerFail,totalGeral, 
+       horasTrabalho
       });
 });
 
