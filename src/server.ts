@@ -8,6 +8,7 @@ import auth from "./routes/api/auth";
 import user from "./routes/api/user";
 import profile from "./routes/api/profile";
 import laudo_benner from "./routes/api/laudo_benner";
+import incidentes from "./routes/api/incidentes"
 
 const app = express();
 app.use(cors()) 
@@ -32,6 +33,7 @@ app.get("/", (_req, res) => {
   res.send("API Running");
 });
 
+app.use("/api/incidentes", incidentes);
 app.use("/api/laudo_benner", laudo_benner);
 app.use("/api/auth", auth);
 app.use("/api/user", user);
